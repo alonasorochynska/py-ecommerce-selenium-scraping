@@ -25,6 +25,15 @@ TABLETS_URL = urljoin(
 PHONES_URL = urljoin(BASE_URL, "/test-sites/e-commerce/more/phones")
 TOUCH_URL = urljoin(BASE_URL, "/test-sites/e-commerce/more/phones/touch")
 
+urls_and_files = [
+    (HOME_URL, "home.csv"),
+    (COMPUTERS_URL, "computers.csv"),
+    (LAPTOPS_URL, "laptops.csv"),
+    (TABLETS_URL, "tablets.csv"),
+    (PHONES_URL, "phones.csv"),
+    (TOUCH_URL, "touch.csv"),
+]
+
 
 @dataclass
 class Product:
@@ -112,12 +121,8 @@ def fetch_and_save_product(url: str, file_name: str) -> list[Product]:
 
 
 def get_all_products() -> None:
-    fetch_and_save_product(HOME_URL, "home.csv")
-    fetch_and_save_product(COMPUTERS_URL, "computers.csv")
-    fetch_and_save_product(LAPTOPS_URL, "laptops.csv")
-    fetch_and_save_product(TABLETS_URL, "tablets.csv")
-    fetch_and_save_product(PHONES_URL, "phones.csv")
-    fetch_and_save_product(TOUCH_URL, "touch.csv")
+    for url, file_name in urls_and_files:
+        fetch_and_save_product(url, file_name)
 
 
 if __name__ == "__main__":
